@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <!--font-->
-        <item name="android:fontFamily">@font/aldrich</item>
+        <item name="android:fontFamily">@font/russo_one</item>
     </style>
 
 </resources>
