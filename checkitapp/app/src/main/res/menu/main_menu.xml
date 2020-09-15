@@ -9,7 +9,8 @@
             android:title="Distance Trigger" />
         <item
             android:id="@+id/help"
-            android:title="Help" />
+            android:title="Help"
+            />
         <item
             android:id="@+id/logout"
             android:title="Logout" />

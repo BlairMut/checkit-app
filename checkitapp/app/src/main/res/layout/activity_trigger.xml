@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TriggerActivity">
+
+    <LinearLayout
+        android:layout_width="358dp"
+        android:layout_height="638dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance Trigger"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(App will notify you when you are below distance from basecamp)"
+            android:paddingBottom="30dp"/>
+
+        <EditText
+            android:id="@+id/distanceTriggerValue"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="eg. 200 metres"
+            />
+
+        <Button
+            android:id="@+id/distanceTriggerButton"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:text="CHECK-IT"
+            android:textColor="#ffffff"
+            android:background="@android:color/holo_green_dark"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
