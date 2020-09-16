@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:statusBarColor">#00000000</item>
         <!--font-->
         <item name="android:fontFamily">@font/russo_one</item>
     </style>

@@ -36,6 +36,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
+    implementation 'androidx.mediarouter:mediarouter:1.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
