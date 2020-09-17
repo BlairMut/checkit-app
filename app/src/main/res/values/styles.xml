@@ -3,12 +3,25 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
 
+<<<<<<< HEAD
         <item name="colorPrimary">@color/colorPrimary</item>
+=======
+        <item name="colorPrimary">#FFFFFF</item>
+        <!--1<item name="colorPrimary">@color/colorPrimary</item>-->
+>>>>>>> add google map to the activity_maps layout
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <!--font-->
         <item name="android:fontFamily">@font/russo_one</item>
+<<<<<<< HEAD
+=======
+
+    </style>
+
+    <style name="MenuStyle" parent="Theme.AppCompat.Light">
+        <item name="android:background">@android:color/white</item>
+>>>>>>> add google map to the activity_maps layout
     </style>
 
 </resources>
