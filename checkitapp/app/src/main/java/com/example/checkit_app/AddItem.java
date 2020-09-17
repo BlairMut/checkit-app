@@ -37,7 +37,7 @@ public class AddItem extends AppCompatActivity {
 
 
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        /*addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddItem.this, MainActivity.class);
@@ -46,9 +46,9 @@ public class AddItem extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        });
+        });*/
 
-        lv = findViewById(R.id.listView_lv);
+        lv = findViewById(R.id.list_lv);
 
         arrayList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(AddItem.this, android.R.layout.simple_list_item_1, arrayList);
