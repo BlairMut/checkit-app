@@ -9,7 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <!--font-->
-        <item name="android:fontFamily">@font/russo_one</item>
+        <item name="android:fontFamily">@font/russo_one</item>x`x
 
     </style>
 
