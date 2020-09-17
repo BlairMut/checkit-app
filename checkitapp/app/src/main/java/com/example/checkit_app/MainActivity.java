@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        text = findViewById(R.id.text);
 
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
@@ -42,9 +43,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 //        //------------------------intent test
-//        Intent intent = getIntent();
-//        String str=intent.getStringExtra("triggerValue");
-//        text.setText(str);
+        Intent triggerIntent = getIntent();
+        String str=triggerIntent.getStringExtra("triggerValue");
+        text.setText(str);
+
 
     }
 

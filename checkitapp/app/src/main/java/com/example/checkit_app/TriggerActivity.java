@@ -24,17 +24,17 @@ public class TriggerActivity extends AppCompatActivity {
         triggerValue=findViewById(R.id.distanceTriggerValue);
         triggerButton = findViewById(R.id.distanceTriggerButton);
 
-//        triggerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String str = triggerValue.getText().toString();
-//                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                intent.putExtra("triggerValue",str);
-//
-//                startActivity(intent);
-//
-//            }
-//        });
+        triggerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String str = triggerValue.getText().toString();
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("triggerValue",str);
+
+                startActivity(intent);
+
+            }
+        });
 
 
     }
