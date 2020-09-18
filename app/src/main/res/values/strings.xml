@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">checkit-app</string>
+<<<<<<< HEAD
+=======
+    <string name="title_activity_maps">Map</string>
+>>>>>>> add google map to the activity_maps layout
+</resources>
