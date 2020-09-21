@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton addBtn;
 
-   /* ArrayList<String> arrayList;
+   ArrayList<String> arrayList;
     ArrayAdapter<String> adapter;
     ListView lv;
-    String item;*/
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +44,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*lv = findViewById(R.id.listView_lv);
+        lv = findViewById(R.id.listView);
 
         arrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, arrayList);
+        adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.custom,R.id.listText, arrayList);
         lv.setAdapter(adapter);
-        OnBtnClick(item);*/
+        OnBtnClick();
 
     }
 
-    /*public void OnBtnClick(final String st){
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String result = st;
-                arrayList.add(result);
-                adapter.notifyDataSetChanged();
-            }
-        });
-    }*/
+    public void OnBtnClick(){
+        item = getIntent().getStringExtra("Value");
+        arrayList.add("hello");
+        adapter.notifyDataSetChanged();
+    }
 }

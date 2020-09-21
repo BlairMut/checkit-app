@@ -18,9 +18,9 @@ public class AddItem extends AppCompatActivity {
     Button addBtn;
     String item;
 
-    ArrayList<String> arrayList;
-    ArrayAdapter<String> adapter;
-    ListView lv;
+    //ArrayList<String> arrayList;
+    //ArrayAdapter<String> adapter;
+    //ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +48,12 @@ public class AddItem extends AppCompatActivity {
             }
         });*/
 
-        lv = findViewById(R.id.list_lv);
+        //lv = findViewById(R.id.list_lv);
 
-        arrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(AddItem.this, android.R.layout.simple_list_item_1, arrayList);
-        lv.setAdapter(adapter);
+        //arrayList = new ArrayList<String>();
+        //adapter = new ArrayAdapter<String>(AddItem.this, R.layout.custom, R.id.listText,arrayList);
+        //lv.setAdapter(adapter);
+
         OnBtnClick();
 
 
@@ -63,8 +64,12 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String result = addItem.getText().toString();
-                arrayList.add(result);
-                adapter.notifyDataSetChanged();
+                Intent intent = new Intent(AddItem.this,MainActivity.class);
+                intent.putExtra("Value", result);
+                startActivity(intent);
+                finish();
+                //arrayList.add(result);
+                //adapter.notifyDataSetChanged();
             }
         });
     }
