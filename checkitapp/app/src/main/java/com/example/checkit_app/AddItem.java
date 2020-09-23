@@ -11,12 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class AddItem extends AppCompatActivity {
     EditText addItem;
     Button addBtn;
     String item;
+
+    FirebaseAuth auth;
 
     //ArrayList<String> arrayList;
     //ArrayAdapter<String> adapter;
@@ -31,6 +36,8 @@ public class AddItem extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Item");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        auth = FirebaseAuth.getInstance();
 
         addItem = findViewById(R.id.addItem);
         addBtn = findViewById(R.id.addBtn);
@@ -64,8 +71,9 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String result = addItem.getText().toString();
+                String Uid = auth.getUid().toString();
+                FirebaseDatabase.getInstance().getReference().child(Uid).child("User Items").push().setValue(result);
                 Intent intent = new Intent(AddItem.this,MainActivity.class);
-                intent.putExtra("Value", result);
                 startActivity(intent);
                 finish();
                 //arrayList.add(result);
