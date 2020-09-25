@@ -42,8 +42,6 @@ public class AddItem extends AppCompatActivity {
         addItem = findViewById(R.id.addItem);
         addBtn = findViewById(R.id.addBtn);
 
-
-
         /*addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +61,6 @@ public class AddItem extends AppCompatActivity {
 
         OnBtnClick();
 
-
     }
 
     public void OnBtnClick(){
@@ -72,6 +69,7 @@ public class AddItem extends AppCompatActivity {
             public void onClick(View v) {
                 String result = addItem.getText().toString();
                 String Uid = auth.getUid().toString();
+
                 FirebaseDatabase.getInstance().getReference().child(Uid).child("User Items").push().setValue(result);
                 Intent intent = new Intent(AddItem.this,MainActivity.class);
                 startActivity(intent);

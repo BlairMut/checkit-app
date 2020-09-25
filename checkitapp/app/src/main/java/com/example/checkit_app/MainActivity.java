@@ -6,10 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ListView lv;
     String item;
+    //Strin
 
     FirebaseAuth auth;
     DatabaseReference reference;
@@ -61,19 +67,33 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.custom,R.id.listText, arrayList);
         lv.setAdapter(adapter);
+        registerForContextMenu(lv);
         OnBtnClick();
+
+        //selectItem
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(MainActivity.this, update.class);
+                intent.putExtra("Update", item);
+                startActivity(intent);
+
+            }
+
+        });
 
     }
 
     public void OnBtnClick(){
-        item = getIntent().getStringExtra("Value");
+        //item = getIntent().getStringExtra("Value");
         String Uid = auth.getUid().toString();
         reference = FirebaseDatabase.getInstance().getReference().child(Uid).child("User Items");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    arrayList.add((String) dataSnapshot.getValue());
+                    arrayList.add(dataSnapshot.getValue().toString());
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -83,5 +103,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        menu.setHeaderTitle("Option");
+
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.updateAction){
+            Toast.makeText(this, "update selected", Toast.LENGTH_SHORT).show();
+
+        }else if(item.getItemId() == R.id.deleteAction){
+            Toast.makeText(this, "delete selected", Toast.LENGTH_SHORT).show();
+
+        }else {
+            return false;
+        }
+            return true;
     }
 }

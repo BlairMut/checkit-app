@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddItem">
+    tools:context=".update">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Check-IT description"
+            android:text="Update item"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"/>
 
@@ -33,23 +34,40 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/addItem"
+            android:id="@+id/editItem"
             android:hint="Add item"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/addBtn"
-            android:text="Check-it"
+            android:id="@+id/updateBtn"
+            android:layout_marginLeft="100dp"
+            android:text="Update-it"
             android:background="#32cd32"/>
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/deleteBtn"
+            android:layout_marginLeft="16dp"
+            android:text="Delete-it"
+            android:background="#32cd32"/>
+        </LinearLayout>
+
 
 
 
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
 </LinearLayout>
