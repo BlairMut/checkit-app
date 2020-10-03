@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent triggerIntent = getIntent();
         String str=triggerIntent.getStringExtra("triggerValue");
         text.setText(str);
-        //GIt account reset
+        //Git account reset
+
 //----------------------geofence start NOT WORKING
         Log.d(TAG, "onCreate: ye caller hai");
         geof.geofenceStarter(this);
