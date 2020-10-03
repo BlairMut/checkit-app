@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG ="Pata nhu" ;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -48,9 +49,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent triggerIntent = getIntent();
         String str=triggerIntent.getStringExtra("triggerValue");
         text.setText(str);
-
-
-        geof.geofenceMain();
+        //GIt account reset
+//----------------------geofence start NOT WORKING
+        Log.d(TAG, "onCreate: ye caller hai");
+        geof.geofenceStarter(this);
 
 
     }

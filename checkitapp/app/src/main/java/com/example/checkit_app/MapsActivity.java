@@ -49,9 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final static long GEOFENCE_EXPIRATION_IN_MILLISECONDS = Geofence.NEVER_EXPIRE;
     private PendingIntent geofencePendingIntent;
 
-//    @Override
-    
-    protected void geofenceMain() {
+// @Override
+
+      protected void geofenceStarter(MainActivity savedInstanceState) {
 //        Log.d(TAG, "geofenceMain: ham yaha hai");
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_maps);
@@ -61,11 +61,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
+        Log.d(TAG, "geofenceStarter: yaha pe");
         // geofence client, to access geofence API
         geofencingClient = LocationServices.getGeofencingClient(this);
-
+//        Log.d(TAG, "geofenceStarter: yaha pe mai aage aagya hu");
         //fused location client, to get your location
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
