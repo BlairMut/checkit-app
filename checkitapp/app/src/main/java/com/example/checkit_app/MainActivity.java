@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     TextView text;
-    MapsActivity geof = new MapsActivity();
+//    MapsActivity geof = new MapsActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent openMapIntent = new Intent(this,MapsActivity.class);
+        startActivity((openMapIntent));
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_home);
 
 
+
 //        //------------------------intent test
         Intent triggerIntent = getIntent();
         String str=triggerIntent.getStringExtra("triggerValue");
@@ -52,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Git account reset my account
 
 //----------------------geofence start NOT WORKING
-        Log.d(TAG, "onCreate: ye caller hai");
-        geof.geofenceStarter(this);
+//        Log.d(TAG, "onCreate: ye caller hai");
+//        geof.geofenceStarter(this);
 
 
     }

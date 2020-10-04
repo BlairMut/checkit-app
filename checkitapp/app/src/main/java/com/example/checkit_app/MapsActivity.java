@@ -45,17 +45,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Double myLat = -37.722358; //Default to latrobe
     private Double myLong = 145.049592;
     private FusedLocationProviderClient fusedLocationClient;
-    private final static int GEOFENCE_RADIUS_IN_METERS = 100; //(Note: Android does not recommend using a smaller radius than 100 meters as it cannot guarantee the accuracy.)
+    private final static int GEOFENCE_RADIUS_IN_METERS = 20; //(Note: Android does not recommend using a smaller radius than 100 meters as it cannot guarantee the accuracy.)
     private final static long GEOFENCE_EXPIRATION_IN_MILLISECONDS = Geofence.NEVER_EXPIRE;
     private PendingIntent geofencePendingIntent;
 
 // @Override
 
-      protected void geofenceStarter(MainActivity savedInstanceState) {
+      protected void onCreate(Bundle savedInstanceState) {
 //        Log.d(TAG, "geofenceMain: ham yaha hai");
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_maps);
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_maps);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -68,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //fused location client, to get your location
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//          moveTaskToBack(true);
     }
 
     @Override
@@ -181,7 +186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
                         Geofence.GEOFENCE_TRANSITION_EXIT |
                         Geofence.GEOFENCE_TRANSITION_DWELL)
-                .setLoiteringDelay(1)
+                .setLoiteringDelay(0)
                 .build();
 
         //get the geofencing request & pending intent
@@ -251,33 +256,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CircleOptions circleOptions = new CircleOptions();
         circleOptions.center(latLng);
         circleOptions.radius((float) MapsActivity.GEOFENCE_RADIUS_IN_METERS);
-        circleOptions.strokeColor(Color.argb(255, 255, 0,0));
-        circleOptions.fillColor(Color.argb(64, 255, 0,0));
+        circleOptions.strokeColor(Color.argb(255, 0, 0,255));
+        circleOptions.fillColor(Color.argb(150, 0, 0,255));
         circleOptions.strokeWidth(4);
         mMap.addCircle(circleOptions);
     }
 
     // I have inc luded this to remove the geofence when activity is destroyed, if you want the app
     // to run in the background you may want to move this code to a button or other UI element
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getApplicationContext(), "Geofence removed", Toast.LENGTH_SHORT).show();
-        //remove geofences
-        geofencingClient.removeGeofences(getGeofencePendingIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Geofences removed
-                        Toast.makeText(getApplicationContext(), "Geofence removed", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Failed to remove geofences
-                        Log.d(TAG, "Failed to remove geofences: " + e.toString());
-                    }
-                });
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast.makeText(getApplicationContext(), "Geofence removed", Toast.LENGTH_SHORT).show();
+//        //remove geofences
+//        geofencingClient.removeGeofences(getGeofencePendingIntent())
+//                .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        // Geofences removed
+//                        Toast.makeText(getApplicationContext(), "Geofence removed", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(this, new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        // Failed to remove geofences
+//                        Log.d(TAG, "Failed to remove geofences: " + e.toString());
+//                    }
+//                });
+//    }
 }

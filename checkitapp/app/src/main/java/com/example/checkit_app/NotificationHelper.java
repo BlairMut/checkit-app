@@ -18,7 +18,7 @@ public class NotificationHelper{
 
         String CHANNEL_NAME = "High priority channel";
         String CHANNEL_ID = "com.example.notifications" + CHANNEL_NAME;
-        String CHANNEL_DESCRIPTION = "Geofence notofications";
+        String CHANNEL_DESCRIPTION = "Geofence notifications";
 
         // Make a channel if necessary
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -45,7 +45,7 @@ public class NotificationHelper{
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setVibrate(new long[0]);
 
         // Show the notification
