@@ -23,10 +23,6 @@ public class AddItem extends AppCompatActivity {
 
     FirebaseAuth auth;
 
-    //ArrayList<String> arrayList;
-    //ArrayAdapter<String> adapter;
-    //ListView lv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,27 +38,11 @@ public class AddItem extends AppCompatActivity {
         addItem = findViewById(R.id.addItem);
         addBtn = findViewById(R.id.addBtn);
 
-        /*addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddItem.this, MainActivity.class);
-                item = addItem.getText().toString();
-                intent.putExtra("Value", item);
-                startActivity(intent);
-                finish();
-            }
-        });*/
-
-        //lv = findViewById(R.id.list_lv);
-
-        //arrayList = new ArrayList<String>();
-        //adapter = new ArrayAdapter<String>(AddItem.this, R.layout.custom, R.id.listText,arrayList);
-        //lv.setAdapter(adapter);
-
         OnBtnClick();
 
     }
 
+    //adding data to firebase database.
     public void OnBtnClick(){
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +54,7 @@ public class AddItem extends AppCompatActivity {
                 Intent intent = new Intent(AddItem.this,MainActivity.class);
                 startActivity(intent);
                 finish();
-                //arrayList.add(result);
-                //adapter.notifyDataSetChanged();
+
             }
         });
     }
