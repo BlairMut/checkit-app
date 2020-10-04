@@ -161,6 +161,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intentHelp = new Intent(MainActivity.this,HelpActivity.class);
                 startActivity(intentHelp);
                 break;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, StartActivity.class));
+                finish();
+                return true;
+
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -250,6 +257,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             isActionMode = false;
         }
     };
+
+    //logout
+
 }
 
 

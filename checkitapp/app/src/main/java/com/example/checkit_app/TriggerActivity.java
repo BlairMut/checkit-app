@@ -23,7 +23,7 @@ public class TriggerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trigger);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Trigger Distance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         triggerValue=findViewById(R.id.distanceTriggerValue);
         triggerButton = findViewById(R.id.distanceTriggerButton);
@@ -32,10 +32,10 @@ public class TriggerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String str = triggerValue.getText().toString();
+                int temp = Integer.parseInt(str);
 //                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
                 Intent intent = new Intent(TriggerActivity.this,MapsActivity.class);
-                intent.putExtra("triggerValue",str);
-
+                intent.putExtra("triggerValue",temp);
                 startActivity(intent);
 
             }

@@ -57,8 +57,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        setContentView(R.layout.activity_maps);
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
           Intent triggerIntent = getIntent();
-          String str= triggerIntent.getStringExtra("triggerValue");
-          GEOFENCE_RADIUS_IN_METERS = Integer.parseInt(str);
+          String str = "100";
+          GEOFENCE_RADIUS_IN_METERS= triggerIntent.getIntExtra("triggerValue",100);
+//          GEOFENCE_RADIUS_IN_METERS = Integer.parseInt(str);
           Log.d(TAG, "onCreate: "+GEOFENCE_RADIUS_IN_METERS);
 
 //          int temp = Integer.parseInt(str);
