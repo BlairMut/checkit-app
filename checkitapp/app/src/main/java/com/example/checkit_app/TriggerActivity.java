@@ -28,7 +28,8 @@ public class TriggerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String str = triggerValue.getText().toString();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                Intent intent = new Intent(TriggerActivity.this,MapsActivity.class);
                 intent.putExtra("triggerValue",str);
 
                 startActivity(intent);

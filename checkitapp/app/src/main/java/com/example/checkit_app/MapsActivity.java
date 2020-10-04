@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Double myLat = -37.722358; //Default to latrobe
     private Double myLong = 145.049592;
     private FusedLocationProviderClient fusedLocationClient;
-    private final static int GEOFENCE_RADIUS_IN_METERS = 20; //(Note: Android does not recommend using a smaller radius than 100 meters as it cannot guarantee the accuracy.)
+    private static int GEOFENCE_RADIUS_IN_METERS = 100; //(Note: Android does not recommend using a smaller radius than 100 meters as it cannot guarantee the accuracy.)
     private final static long GEOFENCE_EXPIRATION_IN_MILLISECONDS = Geofence.NEVER_EXPIRE;
     private PendingIntent geofencePendingIntent;
 
@@ -56,6 +56,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_maps);
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+          Intent triggerIntent = getIntent();
+          String str= triggerIntent.getStringExtra("triggerValue");
+          GEOFENCE_RADIUS_IN_METERS = Integer.parseInt(str);
+          Log.d(TAG, "onCreate: "+GEOFENCE_RADIUS_IN_METERS);
+
+//          int temp = Integer.parseInt(str);
+//          GEOFENCE_RADIUS_IN_METERS.
+//          text.setText(str);
 
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_maps);

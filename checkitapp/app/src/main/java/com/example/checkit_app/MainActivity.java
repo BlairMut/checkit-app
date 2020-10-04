@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG ="Pata nhu" ;
+    private static final String TAG ="Pata nhi" ;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
