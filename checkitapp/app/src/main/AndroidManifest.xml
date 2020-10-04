@@ -12,9 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TriggerActivity"/>
+        <service
+            android:name=".MapService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".TriggerActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".MapsActivity"/>
+        <activity android:name=".MapsActivity" />
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />
@@ -37,9 +42,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <receiver android:name=".GeofenceBroadcastReceiver"
+        <receiver
+            android:name=".GeofenceBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

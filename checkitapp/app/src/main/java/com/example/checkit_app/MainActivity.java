@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent openMapIntent = new Intent(this,MapsActivity.class);
-        startActivity((openMapIntent));
+//        Intent openMapIntent = new Intent(this,MapsActivity.class);
+//        startActivity((openMapIntent));
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
                 //NOT IMPLEMENTED DUE TO LACK OF CODE AVAILABILITY
-//            case R.id.basecampLocation:
-//                Intent intentBasecamp = new Intent(MainActivity.this,BaseCampActivity.class);
-//                startActivity(intentBasecamp);
-//                break;
+            case R.id.basecampLocation:
+                Intent intentBasecamp = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(intentBasecamp);
+                break;
             case R.id.distanceTrigger:
                 Intent intentTrigger = new Intent(MainActivity.this,TriggerActivity.class);
                 startActivity(intentTrigger);
