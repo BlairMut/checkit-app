@@ -265,7 +265,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         circleOptions.center(latLng);
         circleOptions.radius((float) MapsActivity.GEOFENCE_RADIUS_IN_METERS);
         circleOptions.strokeColor(Color.argb(255, 0, 0,255));
-        circleOptions.fillColor(Color.argb(150, 0, 0,255));
+        circleOptions.fillColor(Color.argb(75, 0, 0,255));
         circleOptions.strokeWidth(4);
         mMap.addCircle(circleOptions);
     }

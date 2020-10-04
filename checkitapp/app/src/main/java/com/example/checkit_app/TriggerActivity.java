@@ -1,6 +1,7 @@
 package com.example.checkit_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ public class TriggerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trigger);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Trigger Distance");
 
         triggerValue=findViewById(R.id.distanceTriggerValue);
         triggerButton = findViewById(R.id.distanceTriggerButton);

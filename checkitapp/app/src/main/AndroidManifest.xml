@@ -12,14 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".MapService"
-            android:enabled="true"
-            android:exported="true"></service>
+        <activity android:name=".AddItem"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".update"
+            android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".TriggerActivity" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".MapsActivity" />
+        <activity android:name=".TriggerActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".HelpActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MapsActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />

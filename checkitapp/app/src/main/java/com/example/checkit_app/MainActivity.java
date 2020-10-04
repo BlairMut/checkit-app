@@ -10,48 +10,116 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    FloatingActionButton addBtn;
+    ArrayList<String> arrayList;
+    ArrayList<String> userSelection;
+    ListViewAdapter adapter;
+    ListView lv;
+    String item;
+    String itemKey;
+    CheckBox checkBox;
+    FirebaseAuth auth;
+    DatabaseReference reference;
+    DatabaseReference reference2;
+//----------------------------------------------------
+    private static boolean isActionMode = false;
     private static final String TAG ="Pata nhi" ;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
+    Toolbar tool;
     TextView text;
+    ActionBarDrawerToggle toggle;
 //    MapsActivity geof = new MapsActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //        Intent openMapIntent = new Intent(this,MapsActivity.class);
 //        startActivity((openMapIntent));
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
+        tool= findViewById(R.id.toolbar);
         text = findViewById(R.id.text);
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(tool);
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,tool,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+//--------------------------------------------------------
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        addBtn = findViewById(R.id.add_button);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          Intent intent = new Intent(MainActivity.this, AddItem.class);
+                                          startActivity(intent);
+
+                                      }
+                                  });
+        lv = findViewById(R.id.listView);
+        lv.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        lv.setMultiChoiceModeListener(modeListener);
+        auth = FirebaseAuth.getInstance();
+
+        arrayList = new ArrayList<String>();
+        userSelection = new ArrayList<>();
+        adapter = new ListViewAdapter(arrayList, this);
+        lv.setAdapter(adapter);
+        registerForContextMenu(lv);
+        OnBtnClick();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(MainActivity.this, update.class);
+                intent.putExtra("Update", item);
+                startActivity(intent);
+
+            }
+
+        });
+
 
 
 
 //        //------------------------intent test
-        Intent triggerIntent = getIntent();
-        String str=triggerIntent.getStringExtra("triggerValue");
-        text.setText(str);
+//        Intent triggerIntent = getIntent();
+//        String str=triggerIntent.getStringExtra("triggerValue");
+//        text.setText(str);
         //Git account reset my account
 
 //----------------------geofence start NOT WORKING
@@ -97,4 +165,91 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+    //---------------------------------------------
+    //---------------------------------------------
+    public void OnBtnClick(){
+        //final String[] itemKey = new String[1];
+        String Uid = auth.getUid().toString();
+        reference = FirebaseDatabase.getInstance().getReference().child(Uid).child("User Items");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    itemKey = dataSnapshot.getKey();
+                    arrayList.add(dataSnapshot.getValue().toString());
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+            if(userSelection.contains(arrayList.get(position))){
+                userSelection.remove(arrayList.get(position));
+            }
+            else {
+                userSelection.add(arrayList.get(position));
+            }
+            mode.setTitle(userSelection.size()+ " items selected...");
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menu,menu);
+
+            isActionMode = true;
+
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.deleteAction:
+                    adapter.removeItems(userSelection);
+                    mode.finish();
+
+                    //String Uid = auth.getUid().toString();
+                    //reference2 = FirebaseDatabase.getInstance().getReference(Uid).child("User Items").child(itemKey);
+                    //Toast.makeText(MainActivity.this, "id: " + itemKey, Toast.LENGTH_SHORT).show();
+                    //reference2.removeValue();
+
+
+
+                default:
+                    return false;
+            }
+
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            isActionMode = false;
+        }
+    };
 }
+
+
