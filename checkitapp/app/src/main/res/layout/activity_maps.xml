@@ -66,6 +66,8 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="599dp"
         android:layout_marginBottom="14dp"
+        android:backgroundTint="#32CC32"
+        android:textColor="#fff"
         android:text="Base Camp Location" />
 
 </RelativeLayout>
