@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 
 import android.content.Context;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,28 +33,43 @@ public class ListViewAdapter extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         View row = inflater.inflate(R.layout.custom,parent,false);
         TextView item = row.findViewById(R.id.listText);
         item.setText(items.get(position));
 
         checkBox = row.findViewById(R.id.checkBox);
+        checkBox.setTag(position);
 
-        //if(MainActivity.isActionMode){
-        //    checkBox.setVisibility(View.VISIBLE);
-        //}else if(MainActivity.isActionMode ){
-        //    checkBox.setVisibility(View.GONE);
-        //}
+        if(MainActivity.isActionMode){
+            checkBox.setVisibility(View.VISIBLE);
+        }else{
+            checkBox.setVisibility(View.GONE);
+        }
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                int postion = (int)compoundButton.getTag();
+
+                if(MainActivity.userSelection.contains(items.get(position))){
+                    MainActivity.userSelection.remove(items.get(position));
+                }else{
+                    MainActivity.userSelection.add(items.get(position));
+                }
+
+                MainActivity.actionMode.setTitle(MainActivity.userSelection.size()+ " items selected...");
+            }
+        });
 
         return row;
     }
-
-    public void removeItems(List<String> items){
-        for(String item: items){
+    //Removing items from the list view
+    public void removeItems(List<String> stuff){
+        for(String item: stuff){
             items.remove(item);
         }
-
         notifyDataSetChanged();
     }
 }

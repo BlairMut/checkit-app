@@ -53,14 +53,6 @@
                 android:layout_marginLeft="150dp"
                 android:text="Update-it"
                 android:background="#32cd32"/>
-            <!--<Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/deleteBtn"
-                android:layout_marginLeft="16dp"
-                android:text="Delete-it"
-                android:background="#32cd32"/>-->
         </LinearLayout>
 
 

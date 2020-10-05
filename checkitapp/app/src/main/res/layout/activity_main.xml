@@ -19,9 +19,6 @@
 
     </com.google.android.material.navigation.NavigationView>
 
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,11 +60,6 @@
                     android:id="@+id/listView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/newItem"
-                    android:textColor="@color/blackColor"/>-->
 
             </LinearLayout>
             <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -93,6 +85,4 @@
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </RelativeLayout>
     </LinearLayout>
-<!--    </ScrollView>-->
-        
 </androidx.drawerlayout.widget.DrawerLayout>

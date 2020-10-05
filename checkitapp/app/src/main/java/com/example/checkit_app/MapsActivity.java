@@ -67,12 +67,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static int GEOFENCE_RADIUS_IN_METERS = 100; //(Note: Android does not recommend using a smaller radius than 100 meters as it cannot guarantee the accuracy.)
     private final static long GEOFENCE_EXPIRATION_IN_MILLISECONDS = Geofence.NEVER_EXPIRE;
     private PendingIntent geofencePendingIntent;
-
-
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String CORSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final String BACK_LOCATION = Manifest.permission.ACCESS_BACKGROUND_LOCATION;
-
     private boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private MarkerOptions options;
@@ -80,55 +77,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ImageView mGps;
     private Button baseCampLocationButton;
 
-// @Override
-
       protected void onCreate(Bundle savedInstanceState) {
-//        Log.d(TAG, "geofenceMain: ham yaha hai");
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_maps);
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
           Intent triggerIntent = getIntent();
           String str = "100";
           GEOFENCE_RADIUS_IN_METERS= triggerIntent.getIntExtra("triggerValue",100);
-//          GEOFENCE_RADIUS_IN_METERS = Integer.parseInt(str);
           Log.d(TAG, "onCreate: "+GEOFENCE_RADIUS_IN_METERS);
-
-//          int temp = Integer.parseInt(str);
-//          GEOFENCE_RADIUS_IN_METERS.
-//          text.setText(str);
-
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_maps);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        if (mapFragment != null) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+            .findFragmentById(R.id.map);
+            if (mapFragment != null) {
             mapFragment.getMapAsync(this);
-        }
-        Log.d(TAG, "geofenceStarter: yaha pe");
-        // geofence client, to access geofence API
-        geofencingClient = LocationServices.getGeofencingClient(this);
-//        Log.d(TAG, "geofenceStarter: yaha pe mai aage aagya hu");
-        //fused location client, to get your location
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-//          moveTaskToBack(true);
-
-
-
-          searchText = (EditText)findViewById(R.id.input_search);
-          baseCampLocationButton = (Button)findViewById(R.id.buttonBaseCamp);
-          baseCampLocationButton.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+            }
+            Log.d(TAG, "geofenceStarter: yaha pe");
+            geofencingClient = LocationServices.getGeofencingClient(this);
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            searchText = (EditText)findViewById(R.id.input_search);
+            baseCampLocationButton = (Button)findViewById(R.id.buttonBaseCamp);
+            baseCampLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
                   LatLng currerntMarked = options.getPosition();
- //                 Log.d("TAG","Based Camped Location: "+ currerntMarked.latitude+" , "+currerntMarked.longitude);
-//                  Intent intent = new Intent(MapsActivity.this,MapsActivity.class);
-//                  intent.putExtra("latitude",currerntMarked.latitude);
-//                  intent.putExtra("longitude",currerntMarked.longitude);
-//                  startActivity(intent);
                   myLat = currerntMarked.latitude;
                   myLong = currerntMarked.longitude;
 

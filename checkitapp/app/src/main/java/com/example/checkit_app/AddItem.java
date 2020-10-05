@@ -42,7 +42,7 @@ public class AddItem extends AppCompatActivity {
 
     }
 
-    //adding data to firebase database.
+    //adding data to firebase database
     public void OnBtnClick(){
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override

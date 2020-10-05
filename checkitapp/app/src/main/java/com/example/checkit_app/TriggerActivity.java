@@ -33,7 +33,6 @@ public class TriggerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String str = triggerValue.getText().toString();
                 int temp = Integer.parseInt(str);
-//                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
                 Intent intent = new Intent(TriggerActivity.this,MapsActivity.class);
                 intent.putExtra("triggerValue",temp);
                 startActivity(intent);

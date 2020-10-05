@@ -34,23 +34,10 @@ public class update extends AppCompatActivity {
 
         editText = findViewById(R.id.editItem);
         updateBtn = findViewById(R.id.updateAction);
-        //deleteBtn = findViewById(R.id.deleteBtn);
-
         auth = FirebaseAuth.getInstance();
 
         upItem = getIntent().getStringExtra("Update");
         editText.setText(upItem);
 
-        /*deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Uid = auth.getUid().toString();
-                //reference = FirebaseDatabase.getInstance().getReference(Uid).child("User Items");
-                //reference.removeValue();
-                Intent intent = new Intent(update.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
     }
 }

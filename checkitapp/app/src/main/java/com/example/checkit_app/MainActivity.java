@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     FloatingActionButton addBtn;
     ArrayList<String> arrayList;
-    ArrayList<String> userSelection;
+    public static ArrayList<String> userSelection;
     ListViewAdapter adapter;
     ListView lv;
     String item;
@@ -46,24 +46,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth auth;
     DatabaseReference reference;
     DatabaseReference reference2;
-//----------------------------------------------------
-    private static boolean isActionMode = false;
-    private static final String TAG ="Pata nhi" ;
+    public static boolean isActionMode = false;
+    private static final String TAG ="Test" ;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar tool;
     TextView text;
     ActionBarDrawerToggle toggle;
-//    MapsActivity geof = new MapsActivity();
+    public static ActionMode actionMode = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Intent openMapIntent = new Intent(this,MapsActivity.class);
-//        startActivity((openMapIntent));
-
+//------------------------------------------------------------------------------------------
+//        Navigation drawer
+//------------------------------------------------------------------------------------------
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         tool= findViewById(R.id.toolbar);
@@ -77,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-//--------------------------------------------------------
+//------------------------------------------------------------------------------------------
+//        Hamburger Toolbar
+//------------------------------------------------------------------------------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -113,20 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-
-
-
-//        //------------------------intent test
-//        Intent triggerIntent = getIntent();
-//        String str=triggerIntent.getStringExtra("triggerValue");
-//        text.setText(str);
-        //Git account reset my account
-
-//----------------------geofence start NOT WORKING
-//        Log.d(TAG, "onCreate: ye caller hai");
-//        geof.geofenceStarter(this);
-
-
     }
 
     @Override
@@ -148,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             case R.id.nav_home:
                 break;
-                //NOT IMPLEMENTED DUE TO LACK OF CODE AVAILABILITY
             case R.id.basecampLocation:
                 Intent intentBasecamp = new Intent(MainActivity.this,MapsActivity.class);
                 startActivity(intentBasecamp);
@@ -166,23 +151,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, StartActivity.class));
                 finish();
                 return true;
-
-
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-    //---------------------------------------------
-    //---------------------------------------------
+
     public void OnBtnClick(){
-        //final String[] itemKey = new String[1];
         String Uid = auth.getUid().toString();
         reference = FirebaseDatabase.getInstance().getReference().child(Uid).child("User Items");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    itemKey = dataSnapshot.getKey();
+                    //itemKey = dataSnapshot.getKey();
                     arrayList.add(dataSnapshot.getValue().toString());
                 }
                 adapter.notifyDataSetChanged();
@@ -208,13 +189,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AbsListView.MultiChoiceModeListener modeListener = new AbsListView.MultiChoiceModeListener() {
         @Override
         public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-            if(userSelection.contains(arrayList.get(position))){
-                userSelection.remove(arrayList.get(position));
-            }
-            else {
-                userSelection.add(arrayList.get(position));
-            }
-            mode.setTitle(userSelection.size()+ " items selected...");
+//            if(userSelection.contains(arrayList.get(position))){
+//                userSelection.remove(arrayList.get(position));
+//            }
+//            else {
+//                userSelection.add(arrayList.get(position));
+//            }
+//            mode.setTitle(userSelection.size()+ " items selected...");
         }
 
         @Override
@@ -223,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             inflater.inflate(R.menu.menu,menu);
 
             isActionMode = true;
+            actionMode  =mode;
 
             return true;
         }
@@ -238,14 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.deleteAction:
                     adapter.removeItems(userSelection);
                     mode.finish();
-
-                    //String Uid = auth.getUid().toString();
-                    //reference2 = FirebaseDatabase.getInstance().getReference(Uid).child("User Items").child(itemKey);
-                    //Toast.makeText(MainActivity.this, "id: " + itemKey, Toast.LENGTH_SHORT).show();
-                    //reference2.removeValue();
-
-
-
+                    return true;
                 default:
                     return false;
             }
@@ -255,10 +230,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             isActionMode = false;
+            actionMode = null;
+            userSelection.clear();
         }
     };
-
-    //logout
 
 }
 

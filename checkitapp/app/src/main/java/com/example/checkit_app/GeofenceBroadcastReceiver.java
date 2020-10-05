@@ -29,21 +29,16 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         for (Geofence geofence: geofenceList) {
             Log.d(TAG, "onReceive: " + geofence.getRequestId());
         }
-        // Location location = geofencingEvent.getTriggeringLocation();
         int transitionType = geofencingEvent.getGeofenceTransition();
 
         switch (transitionType) {
             case Geofence.GEOFENCE_TRANSITION_ENTER:
                 Toast.makeText(context, "GEOFENCE_TRANSITION_ENTER", Toast.LENGTH_SHORT).show();
-                NotificationHelper.makeStatusNotification("Entering Geofence", "Geofence Notification", context);
-                break;
-            case Geofence.GEOFENCE_TRANSITION_DWELL:
-                Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
-                NotificationHelper.makeStatusNotification("Dwell in Geofence", "Geofence Notification", context);
+                NotificationHelper.makeStatusNotification("WELCOME BACK", "Geofence Notification", context);
                 break;
             case Geofence.GEOFENCE_TRANSITION_EXIT:
                 Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
-                NotificationHelper.makeStatusNotification("Exiting Geofence", "Geofence Notification", context);
+                NotificationHelper.makeStatusNotification("Exiting Basecamp", "Geofence Notification", context);
                 break;
         }
     }
