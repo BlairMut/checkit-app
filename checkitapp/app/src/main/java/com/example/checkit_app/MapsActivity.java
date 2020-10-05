@@ -124,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                   LatLng currerntMarked = options.getPosition();
-//                  Log.d("TAG","Based Camped Location: "+ currerntMarked.latitude+" , "+currerntMarked.longitude);
+ //                 Log.d("TAG","Based Camped Location: "+ currerntMarked.latitude+" , "+currerntMarked.longitude);
 //                  Intent intent = new Intent(MapsActivity.this,MapsActivity.class);
 //                  intent.putExtra("latitude",currerntMarked.latitude);
 //                  intent.putExtra("longitude",currerntMarked.longitude);
@@ -145,6 +145,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                   LatLng currerntMarked = options.getPosition();
+                  myLat = currerntMarked.latitude;
+                  myLong = currerntMarked.longitude;
                   Log.d("TAG","Based Camped Location: "+ currerntMarked.latitude+" , "+currerntMarked.longitude);
                   addGeofence();
 
@@ -327,6 +329,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "onSuccess: Geofence Added...");
+                        Log.d(TAG, "onSuccess: "+myLat+" "+myLong);
                         LatLng home = new LatLng(myLat, myLong);
                         addCircle(home);
                     }
@@ -473,5 +476,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.e("TAG","AutoComplete Error: "+status.getStatusMessage());
         }
     }
-
 }
