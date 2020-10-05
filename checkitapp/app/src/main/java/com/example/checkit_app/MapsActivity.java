@@ -3,6 +3,7 @@ package com.example.checkit_app;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -27,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
@@ -84,8 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
           Log.d(TAG, "onCreate: "+GEOFENCE_RADIUS_IN_METERS);
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_maps);
-
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+          SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
             .findFragmentById(R.id.map);
             if (mapFragment != null) {
             mapFragment.getMapAsync(this);

@@ -26,7 +26,7 @@ public class NotificationHelper{
             // the NotificationChannel class is new and not in the support library
             CharSequence name = CHANNEL_NAME;
             String description = CHANNEL_DESCRIPTION;
-            int importance = NotificationManager.IMPORTANCE_HIGH;
+            int importance = NotificationManager.IMPORTANCE_MAX;
             NotificationChannel channel =
                     new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);

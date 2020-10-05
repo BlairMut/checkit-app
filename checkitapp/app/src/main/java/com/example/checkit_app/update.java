@@ -29,7 +29,7 @@ public class update extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add Item");
+        getSupportActionBar().setTitle("Update item");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editText = findViewById(R.id.editItem);

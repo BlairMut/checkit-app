@@ -101,17 +101,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lv.setAdapter(adapter);
         registerForContextMenu(lv);
         OnBtnClick();
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                item = parent.getItemAtPosition(position).toString();
-                Intent intent = new Intent(MainActivity.this, update.class);
-                intent.putExtra("Update", item);
-                startActivity(intent);
-
-            }
-
-        });
+//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                item = parent.getItemAtPosition(position).toString();
+//                Intent intent = new Intent(MainActivity.this, update.class);
+//                intent.putExtra("Update", item);
+//                startActivity(intent);
+//
+//            }
+//
+//        });
 
     }
 
