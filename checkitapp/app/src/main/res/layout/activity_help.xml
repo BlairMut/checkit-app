@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/MenuStyle"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email us at:"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:paddingLeft="10dp"
+            app:srcCompat="@mipmap/email" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="20dp"
+            android:text="developers@checkit.org "
+            android:textSize="20dp" />
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Social Media"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="#000000"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:paddingLeft="10dp"
+            app:srcCompat="@mipmap/instagram" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="checkitdevs "
+            android:textSize="20dp"
+            android:textColor="#FFA500"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:paddingLeft="10dp"
+                app:srcCompat="@mipmap/facebook_round" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="checkitdevs "
+                android:textColor="#3b5998"
+                android:textSize="20dp" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:paddingLeft="10dp"
+            app:srcCompat="@mipmap/playstore" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="checkitdevs "
+            android:textColor="#00ff00"
+            android:textSize="20dp"/>
+    </LinearLayout>
+</LinearLayout>
+
+

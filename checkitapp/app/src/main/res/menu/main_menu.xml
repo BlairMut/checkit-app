@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/home"
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <item
+            android:icon="@drawable/basecamp"
+            android:id="@+id/basecampLocation"
+            android:title="Basecamp Location" />
+        <item
+            android:icon="@drawable/trigger"
+            android:id="@+id/distanceTrigger"
+            android:title="Distance Trigger" />
+        <item
+            android:icon="@drawable/help"
+            android:id="@+id/help"
+            android:title="Help"
+            />
+        <item
+            android:icon="@drawable/logout"
+            android:id="@+id/logout"
+            android:title="Logout" />
+
+    </group>
+
+
+</menu>
